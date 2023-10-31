@@ -106,7 +106,7 @@ def Start():
     words = jieba.cut(source)
 
     # 去除停用词
-    words = [word for word in jieba.cut(source) if word not in stopwords]
+    words = [word for word in jieba.cut(source) if word not in stopwords_hit]
 
     # 将分词结果转换为列表
     words_list = list(words)
