@@ -95,8 +95,18 @@ def Start():
     # 使用正则表达式匹配非中文字符
     pattern = re.compile(r'[^\u4e00-\u9fa5]')
     source = re.sub(pattern, '', source)
+
+    # 加载停用词列表
+    stopwords = []
+    with open('stopwords_hit.txt', 'r', encoding='utf-8') as f:
+        for line in f:
+            stopwords.append(line.strip())
+
     # 对文本进行分词
     words = jieba.cut(source)
+
+    # 去除停用词
+    words = [word for word in jieba.cut(source) if word not in stopwords]
 
     # 将分词结果转换为列表
     words_list = list(words)
